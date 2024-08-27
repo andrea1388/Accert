@@ -11,3 +11,5 @@ pratiche che a loro volta possono essere composta da altre pratiche
 SPDX short identifier: EUPL-1.2
 
 
+Creazione dei certificati (autofirmati)
+    sudo openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -keyout key.key -out cert.crt
