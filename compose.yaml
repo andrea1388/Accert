@@ -1,0 +1,49 @@
+# docker-compose build
+# docker-compose up -d
+# version: "3"
+# volumes:
+#   mariadb-socket:
+#   dbdatadir:
+
+services:
+  db:
+    container_name: db
+    image: mariadb:10.8.2
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: password
+#      MARIADB_MYSQL_LOCALHOST_USER: 1
+#      MARIADB_MYSQL_LOCALHOST_GRANTS: "RELOAD, PROCESS, LOCK TABLES, BINLOG MONITOR"
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      - ./datadir:/var/lib/mysql
+      # - mariadb-socket:/var/run/mysqld
+    ports:
+      - 3306:3306
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    depends_on:
+      - "db"
+    # environment:
+    #   - PMA_HOST= db
+
+  php:
+    container_name: php
+    build:
+      context: .
+    #   dockerfile: dockerfile
+    volumes:
+      - ./wwwroot:/var/www/html
+      # - ./etc/php:/usr/local/etc/php
+      # - ./etc/apache2/apache2.conf:/etc/apache2/conf-enabled/apache2.conf
+      - ./apache.accert.conf:/etc/apache2/sites-enabled/apache.accert.conf
+      - ./certificati:/etc/certificati
+    ports:
+      - "7354:443"
+    depends_on:
+      - "db"
