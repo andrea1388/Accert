@@ -1,103 +1,42 @@
+
 <?
 	include 'base.php';
-  GetIfSet($ufficio,"ufficio");
-  GetIfSet($utente,"utente");
-  GetIfSet($password,"password");
-  $msg="";
-  if(!empty($ufficio) && !empty($utente) && !empty($password)) 
-  {
-    if(VerificaUfficio($msg,$ufficio,$dbuser,$dbname))
-    {
-      if(VerificaUtente($msg,$utente,$password,$dbuser,$dbname,$idutente,$permessi))
-      {
-        session_name("accertV2");
-        session_start();
-        $_SESSION['dbname'] = $dbname;
-        $_SESSION['dbuser'] = $dbuser;
-        $_SESSION['idutente'] = $idutente;
-        $_SESSION['permessi'] = $permessi; 
-        header('Location: index.php'); 
-        die();
-      }
-    }
-  }
- 
-  function VerificaUfficio(&$msg,$ufficio,&$dbuser,&$dbname)
-  {
-    include('db.inc.php');
-    $ok=false;
-    $connDbUff = new mysqli($host, $dbuserUffici, $dbpwd, $dbnameUffici);
-    $stmt = $connDbUff->prepare("SELECT * FROM Ufficio where codice=?");
-    $stmt->bind_param("s", $ufficio);
+	if(!empty($_REQUEST["utente"])) {
+    $conn = ConnettiAlDB();
+    $utente=isset($_REQUEST["utente"])? EscapeIfNotEMptyOrNull($conn,$_REQUEST["utente"]) : NULL;
+    $password=isset($_REQUEST["password"])? EscapeIfNotEMptyOrNull($conn,$_REQUEST["password"]) : NULL;
+    $stmt = $conn->prepare("SELECT * FROM Soggetto where login=?");
+    $stmt->bind_param("s", $utente);
     $stmt->execute();
     $result = $stmt->get_result();
-    if ($result->num_rows > 0) 
-    {
-      $row = $result->fetch_assoc();
-      $dbname = $row['dbName'];
-      $dbuser = $row['dbUser'];
-      $dataoggi = new DateTime('now');
-      $datatermine =  DateTime::createFromFormat ( "Y-m-d H:i:s", $row["dataTermine"] );
-      if($datatermine>=$dataoggi)
-      {
-        $ok=true;
-      }
-      else
-      {
-        $msg="account scaduto";
-      }
-      if(empty($dbname) || empty($dbuser))
-      {
-        $ok=false;
-        $msg="dbname or dbuser not set";
-      }
+    $logatt="Login:";
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        //echo $row['pwdhash'];
+        //echo password_hash($password, PASSWORD_BCRYPT);
+        if(password_verify($password,$row['pwdhash'])) 
+        //if($row['password']==$password) 
+        {
+          $_SESSION['idutente'] = $row['idSoggetto'];
+          $_SESSION['permessi'] = $row['permessi']; 
+          header('Location: index.php'); 
+          $logatt=$logatt." OK";
+        }
+        else {
+          $logatt=$logatt." FAIL (bad pass)";
+        }
     }
-    else
-    {
-      $msg="ufficio non trovato: ".$ufficio;
+    else {
+      $logatt=$logatt." FAIL (sconosciuto)";
     }
-    $connDbUff->close();
-    return $ok;
+    $logatt=$logatt. " user: ".$utente;
+    $logatt=substr($logatt, 0,99);
+    $stmt = $conn->prepare("INSERT INTO Log (operazione) VALUES (?)");
+    $stmt->bind_param("s", $logatt);
+    if(!$stmt->execute()) die ($logatt. " ". $stmt->error);
+    $conn->close();
+
   }
-
-function VerificaUtente(&$msg,$utente,$password,$dbuser,$dbname,&$idutente,&$permessi)
-{
-  include('db.inc.php');
-  $ok=false;
-  $conn = ConnettiAlDBP($dbuser,$dbname);
-  $stmt = $conn->prepare("SELECT * FROM Soggetto where login=?");
-  $stmt->bind_param("s", $utente);
-  $stmt->execute();
-  $result = $stmt->get_result();
-  if ($result->num_rows > 0) 
-  {
-    
-    $row = $result->fetch_assoc();
-    if(password_verify($password,$row['pwdhash']))
-    {
-      $idutente=$row['idSoggetto'];
-      $permessi=$row['permessi'];
-      logAttivita($conn,"Login OK ".$utente);
-      $ok=true;
-    }
-    else
-    {
-      logAttivita($conn,"Login Fail (bad password): ".$utente);
-      $msg="password errata";
-    }
-  }
-  else
-  {
-    $msg="utente inesistente";
-    logAttivita($conn,"Login Fail (bad user): ".$utente);
-  }
-  $conn->close();
-  return $ok;
-}
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -115,15 +54,11 @@ function VerificaUtente(&$msg,$utente,$password,$dbuser,$dbname,&$idutente,&$per
   <body>
     <div class="container">
     <h1>Login</h1>
-    <? if(!empty($msg)) echo "<h2><div class='alert alert-warning' role='alert'>".$msg."</div></h2>"; ?>
+    <? if(!empty($_REQUEST["utente"])) echo "<h2><div class='alert alert-warning' role='alert'>Riconoscimento non avvenuto</div></h2>"; ?>
       <form action='login.php' method='post'>
         <div class="form-group">
-          <label for="ufficio">Codice ufficio</label>
-          <input type="text" class="form-control" id="ufficio" placeholder="Codice ufficio" name="ufficio" required autofocus>
-        </div>
-        <div class="form-group">
           <label for="utente">Nome utente</label>
-          <input type="text" class="form-control" id="utente" placeholder="Nome utente" name="utente" required>
+          <input type="text" class="form-control" id="utente" placeholder="Nome utente" name="utente" required autofocus>
         </div>
         <div class="form-group">
           <label for="Password">password</label>

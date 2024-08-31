@@ -138,11 +138,11 @@
         <? GeneraFormTextArea("","descrizione_estesa","Descrizione estesa",False,False); ?>
         <? GeneraFormSubmit("Aggiungi"); ?>
       </form> 
-      <h2>Aggiungi collegamenti a documenti esterni (Google drive, dropbox, documenti sul web, ecc)</h2>
+      <h2>Aggiungi documento</h2>
       <form class="form-horizontal" action="upload.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="idAccertamento" value="<? echo $id; ?>">
         <input type="hidden" name="tipo" value="1">
-        <? GeneraFormInput("","filename","Url",True,false,0,"inserire url completo"); ?>
+        <? GeneraFormFile("","file","File",True,false); ?>
         <? GeneraFormInput("","descrizione","Descrizione file",True,false); ?>
         <? GeneraFormSubmit("Aggiungi"); ?>
       </form>

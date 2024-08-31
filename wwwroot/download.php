@@ -11,10 +11,10 @@
   if ($result->num_rows == 0) die("id non trovato");
   $row = $result->fetch_assoc();
   $idAccertamento=$row['idAccertamento'];
-  $fp=$bucketpath.$dbname.'/'.$idAccertamento.'/';
-  $fn=$fp.$row['idDocumento'].'-'.$row['filename'];
   header('Content-disposition: inline');
   header("Content-type: ".$row['conttype']);
-  header("Content-Length: " . filesize($fn));
-  readfile($fn);
+  $row = $result->fetch_assoc();
+  header("Content-Length: " . strlen($row['File']));
+  // header('Content-Disposition: attachment; filename="' . $row['filename'] . '"');
+  echo $row['File'];
 ?>
