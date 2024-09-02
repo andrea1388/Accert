@@ -46,8 +46,8 @@
       if($id>0) {
         // controlli per update
         if((strpos($permessi, 'P') !== false) && isset($password)) {   
-          $stmt = $conn->prepare("UPDATE Soggetto SET nome=?, dataNascita=?, luogoNascita=?, residenza=?, tel=?, mail=?, documento=?, indirizzo=?, societa=?, pwdhash=?, note=? where idSoggetto=?");
-          $stmt->bind_param("sssssssssssi", 
+          $stmt = $conn->prepare("UPDATE Soggetto SET nome=?, dataNascita=?, luogoNascita=?, residenza=?, tel=?, mail=?, documento=?, indirizzo=?, societa=?, login=?, pwdhash=?, note=? where idSoggetto=?");
+          $stmt->bind_param("ssssssssssssi", 
           $nome,
           $dn,
           $ln,
@@ -57,6 +57,7 @@
           $doc,
           $ind,
           $societa,
+          $login,
           $pwdhash,
           $note,
           $id);

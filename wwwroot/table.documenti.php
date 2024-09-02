@@ -1,5 +1,5 @@
 <table class="table table-hover table-bordered">
-<tr class="warning"><td>Descrizione</td><td>Azioni</td></tr>
+<tr class="warning"><td>Nome file</td><td>Descrizione</td><td>Azioni</td></tr>
 <?
     $stmt = $conn->prepare("SELECT * FROM Documento where idAccertamento=?");
     $stmt->bind_param("i", $idAccertamento);

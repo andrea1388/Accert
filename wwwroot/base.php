@@ -125,9 +125,7 @@
  */
   function ConnettiAlDB() {
     include('db.inc.php');
-    $username = $_SESSION['dbuser'];
-    $database = $_SESSION['dbname'];
-    $conn=ConnettiAlDBP($username, $database);
+    $conn=ConnettiAlDBP($dbuser, $dbname);
     return $conn;
   }
 

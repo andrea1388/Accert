@@ -1,5 +1,8 @@
 <?php
 $dbname = 'accert';
-$dbpwd= 'Gh5688dshjg!';
+$dbuser = 'accert';
+$dbpwd= 'Gh5688dsahjg';
+#$dbuser = 'root';
+#$dbpwd= 'password';
 $host = "db";
 ?>

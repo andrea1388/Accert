@@ -1,6 +1,3 @@
-<!-- Cerca accertamenti
-Campi di ricerca: tipo (tutti o uno specifico default tutti), anno (facoltativo), descrizione (facoltativo)
-descrizione cerca tra: nome, descrizione, luogo targa, così come definito in lista accertamenti -->
 <?
 	include 'base.php';
   RedirectSeMancaCookie();

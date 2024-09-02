@@ -1,6 +1,6 @@
-
 <?
 	include 'base.php';
+  $ok=false;
 	if(!empty($_REQUEST["utente"])) {
     $conn = ConnettiAlDB();
     $utente=isset($_REQUEST["utente"])? EscapeIfNotEMptyOrNull($conn,$_REQUEST["utente"]) : NULL;
@@ -17,10 +17,13 @@
         if(password_verify($password,$row['pwdhash'])) 
         //if($row['password']==$password) 
         {
+          session_name("accertV2");
+          session_start();
           $_SESSION['idutente'] = $row['idSoggetto'];
           $_SESSION['permessi'] = $row['permessi']; 
           header('Location: index.php'); 
           $logatt=$logatt." OK";
+          $ok=true;
         }
         else {
           $logatt=$logatt." FAIL (bad pass)";
@@ -37,6 +40,7 @@
     $conn->close();
 
   }
+  if($ok) die();
 ?>
 <!DOCTYPE html>
 <html lang="it">

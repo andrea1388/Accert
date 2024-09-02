@@ -98,6 +98,7 @@ DROP TABLE IF EXISTS `Documento`;
 CREATE TABLE `Documento` (
   `idDocumento` int(11) NOT NULL AUTO_INCREMENT,
   `idAccertamento` int(11) NOT NULL,
+  `File` longblob NOT NULL,
   `filename` text COLLATE latin1_general_ci NOT NULL,
   `dataDocumento` datetime(3) DEFAULT NULL,
   `tipo` int(11) NOT NULL,
@@ -565,9 +566,10 @@ INSERT INTO `RuoloSoggetto` (`idRuolo`, `nomeRuolo`) VALUES
 (3, 'Altro'),
 (2, 'Responsabile');
 
+-- default password Adm1n$
 INSERT INTO `Soggetto` (`idSoggetto`, `nome`, `dataNascita`, `luogoNascita`, `residenza`, `tel`, `mail`, `documento`, `indirizzo`, `tipo`, `winUN`, `login`, `permessi`, `societa`, `pwdhash`, `note`) VALUES
-(1, 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'admin', 'HP', NULL, '$2y$10$AaQ.LJZJ.9Lt9sdbMsMOROu8mMQqChxUKTgbNnnFXhDANWYoxjTpu', NULL);
+(1, 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'admin', 'HP', NULL, '$2y$10$P15Y5wo0qpVxtZ.bHqBofenvXOzcNWoQLQbpNC0zpWjK3WmAX/z6.', NULL);
 
-CREATE USER 'accert'@'%' IDENTIFIED BY 'Gh5688dsahjg!';
-GRANT delete,execute,insert,select,show view,update ON accert.* TO 'accert'@'%';
+CREATE USER 'accert'@'%' IDENTIFIED BY 'Gh5688dsahjg';
+GRANT all privileges ON accert.* TO 'accert'@'%' IDENTIFIED BY 'Gh5688dsahjg';
 FLUSH PRIVILEGES;

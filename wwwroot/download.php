@@ -13,7 +13,6 @@
   $idAccertamento=$row['idAccertamento'];
   header('Content-disposition: inline');
   header("Content-type: ".$row['conttype']);
-  $row = $result->fetch_assoc();
   header("Content-Length: " . strlen($row['File']));
   // header('Content-Disposition: attachment; filename="' . $row['filename'] . '"');
   echo $row['File'];
