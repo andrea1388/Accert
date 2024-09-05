@@ -2,3 +2,4 @@ datadir/*
 .DS_Store
 wwwroot/db.inc.php
 bkup.tar
+/backup

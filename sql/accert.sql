@@ -572,4 +572,6 @@ INSERT INTO `Soggetto` (`idSoggetto`, `nome`, `dataNascita`, `luogoNascita`, `re
 
 CREATE USER 'accert'@'%' IDENTIFIED BY 'Gh5688dsahjg';
 GRANT all privileges ON accert.* TO 'accert'@'%' IDENTIFIED BY 'Gh5688dsahjg';
+CREATE USER 'mariabackup'@'localhost' IDENTIFIED BY 'fhdsgffds';
+GRANT RELOAD, PROCESS, LOCK TABLES, BINLOG MONITOR ON *.* TO 'mariabackup'@'localhost';
 FLUSH PRIVILEGES;

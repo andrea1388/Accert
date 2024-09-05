@@ -17,6 +17,7 @@ services:
     volumes:
       - ./sql:/docker-entrypoint-initdb.d
       - ./datadir:/var/lib/mysql
+      - ./backup:/backup
       # - mariadb-socket:/var/run/mysqld
     ports:
       - 3306:3306
