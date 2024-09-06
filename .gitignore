@@ -3,3 +3,4 @@ datadir/*
 wwwroot/db.inc.php
 bkup.tar
 /backup
+tar/bkup.tar.gz
