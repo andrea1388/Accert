@@ -4,3 +4,7 @@ wwwroot/db.inc.php
 bkup.tar
 /backup
 tar/bkup.tar.gz
+CA-key.pem
+CA.pem
+internal.csr
+certificati/*
