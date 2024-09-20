@@ -8,7 +8,7 @@
     $ruolo=$_REQUEST["ruolo"];
     $descrizioneruolo=$_REQUEST["descrizioneruolo"];
     $conn = ConnettiAlDB();
-    echo $idsoggetto." ".$idaccertamento." ".$ruolo." ".$descrizioneruolo."<br>";    
+    // echo $idsoggetto." ".$idaccertamento." ".$ruolo." ".$descrizioneruolo."<br>";    
 
     if(!empty($idaccertamento)) {
       // controlli per update
