@@ -1,5 +1,7 @@
 #!/bin/bash
 rm -r backup/*
+rm tar/prev.bkup.tar.gz
+mv tar/bkup.tar.gz tar/prev.bkup.tar.gz
 set -e
 docker exec db mariabackup --backup \
    --target-dir=/backup/ \
