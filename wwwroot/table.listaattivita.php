@@ -39,7 +39,7 @@
         $wp=$wp."(idTipoAccertamento = ?)";
     }
     if(!empty($wp)) $sql=$sql." WHERE ".$wp;
-    $sql=$sql." ORDER BY data desc";
+    $sql=$sql." ORDER BY numeroAccertamento desc";
 /*     echo $sql."/".$param."<br>";
     print_r($array); */
   
