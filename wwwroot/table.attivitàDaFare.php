@@ -25,7 +25,8 @@
         $b="";
         if(!is_null($row["idAccertamentoPadre"]))
         {
-          $b=$row["descrizionePadre"];
+          $b="[".$row["numeroAccertamento"]."] ";
+          $b=$b.$row["descrizionePadre"];
           if(!is_null($row["responsabiliPadre"])) $b=$b." (".$row["responsabiliPadre"].")";
         }
 
