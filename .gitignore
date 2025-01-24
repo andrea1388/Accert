@@ -8,3 +8,4 @@ CA-key.pem
 CA.pem
 internal.csr
 certificati/*
+.DS_Store

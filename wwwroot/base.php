@@ -156,8 +156,8 @@
 
   function EscapeIfNotEMptyOrNull($conn,$nullableval) {
     if(!isset($nullableval)) return NULL;
-    return ($nullableval != '') ? $conn->real_escape_string($nullableval) : NULL;
-    //return ($nullableval != '') ? $nullableval : NULL;
+    //return ($nullableval != '') ? $conn->real_escape_string($nullableval) : NULL;
+    return ($nullableval != '') ? $nullableval : NULL;
   }
 
   function StringaVuotaSeNonSettato($nullableval) {
