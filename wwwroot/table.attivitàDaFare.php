@@ -9,7 +9,7 @@
 // attività, pratica, soggetti
 /* function TableRowAttivitàDaCompletare($conn,$idOperatore)
 { */
-  $sql="select * from listaAttività2 l join SoggettoAccertamento s on l.idAccertamento=s.idAccertamento where s.idSoggetto=? and data is null";
+  $sql="select * from listaAttività3 l join SoggettoAccertamento s on l.idAccertamento=s.idAccertamento where s.idSoggetto=? and data is null";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("i", $_SESSION['idutente']);
   $stmt->execute();
@@ -25,7 +25,7 @@
         $b="";
         if(!is_null($row["idAccertamentoPadre"]))
         {
-          $b="[".$row["numeroAccertamento"]."] ";
+          $b="[".$row["numeroAccertamentoPadre"]."] ";
           $b=$b.$row["descrizionePadre"];
           if(!is_null($row["responsabiliPadre"])) $b=$b." (".$row["responsabiliPadre"].")";
         }
