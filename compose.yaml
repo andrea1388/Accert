@@ -11,7 +11,7 @@ services:
     image: mariadb:10.8.2
     restart: unless-stopped
     environment:
-      MARIADB_ROOT_PASSWORD: password
+      MARIADB_ROOT_PASSWORD: metterelapassword
 #      MARIADB_MYSQL_LOCALHOST_USER: 1
 #      MARIADB_MYSQL_LOCALHOST_GRANTS: "RELOAD, PROCESS, LOCK TABLES, BINLOG MONITOR"
     volumes:

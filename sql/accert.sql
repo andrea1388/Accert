@@ -570,8 +570,20 @@ INSERT INTO `RuoloSoggetto` (`idRuolo`, `nomeRuolo`) VALUES
 INSERT INTO `Soggetto` (`idSoggetto`, `nome`, `dataNascita`, `luogoNascita`, `residenza`, `tel`, `mail`, `documento`, `indirizzo`, `tipo`, `winUN`, `login`, `permessi`, `societa`, `pwdhash`, `note`) VALUES
 (1, 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'admin', 'HP', NULL, '$2y$10$P15Y5wo0qpVxtZ.bHqBofenvXOzcNWoQLQbpNC0zpWjK3WmAX/z6.', NULL);
 
-CREATE USER 'accert'@'%' IDENTIFIED BY 'Gh5688dsahjg';
-GRANT all privileges ON accert.* TO 'accert'@'%' IDENTIFIED BY 'Gh5688dsahjg';
-CREATE USER 'mariabackup'@'localhost' IDENTIFIED BY 'fhdsgffds';
+CREATE USER 'accert'@'%' IDENTIFIED BY 'metterelapassword';
+GRANT all privileges ON accert.* TO 'accert'@'%';
+CREATE USER 'mariabackup'@'localhost' IDENTIFIED BY 'metterelapassword';
 GRANT RELOAD, PROCESS, LOCK TABLES, BINLOG MONITOR ON *.* TO 'mariabackup'@'localhost';
 FLUSH PRIVILEGES;
+
+
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`accert`@`%` SQL SECURITY DEFINER VIEW `Attività2`  AS SELECT DISTINCT `t2`.`data` AS `data`, `t2`.`idAccertamento` AS `idAccertamento`, `t4`.`nome` AS `tipo`, concat(`t2`.`numero`,'/',`t4`.`codice`,'/',`t2`.`anno`) AS `numeroAccertamento`, `t2`.`luogo` AS `luogo`, `t2`.`numero` AS `numero`, `t2`.`anno` AS `anno`, `t2`.`descrizione` AS `descrizione`, `responsabiliAccertamento`(`t2`.`idAccertamento`) AS `responsabili`, `accertatoriAttività`(`t2`.`idAccertamento`) AS `idAccertatori`, `t2`.`idTipoAccertamento` AS `idTipoAccertamento`, `t2`.`descrizione_estesa` AS `descrizione_estesa`, `t2`.`idAccertamentoPadre` AS `idAccertamentoPadre` FROM (((`Accertamento` `t2` left join `SoggettoAccertamento` `t3` on(`t3`.`idAccertamento` = `t2`.`idAccertamento`)) left join `Soggetto` `t1` on(`t1`.`idSoggetto` = `t3`.`idSoggetto`)) left join `TipoAccertamento` `t4` on(`t2`.`idTipoAccertamento` = `t4`.`idTipoAccertamento`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura per vista `listaAttività`
+--
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`accert`@`%` SQL SECURITY DEFINER VIEW `listaAttività`  AS SELECT DISTINCT `t2`.`data` AS `data`, `t2`.`idAccertamento` AS `idAccertamento`, `t4`.`nome` AS `tipo`, concat(`t2`.`numero`,'/',`t4`.`codice`,'/',`t2`.`anno`) AS `numeroAccertamento`, `t2`.`luogo` AS `luogo`, `t2`.`numero` AS `numero`, `t2`.`anno` AS `anno`, `t2`.`descrizione` AS `descrizione`, `soggettiAccertamento`(`t2`.`idAccertamento`) AS `soggetti`, `accertatoriAttività`(`t2`.`idAccertamento`) AS `idAccertatori`, `t2`.`idTipoAccertamento` AS `idTipoAccertamento`, `t2`.`descrizione_estesa` AS `descrizione_estesa`, `t2`.`idAccertamentoPadre` AS `idAccertamentoPadre`, `t5`.`descrizione` AS `descrizionePadre` FROM ((((`Accertamento` `t2` left join `SoggettoAccertamento` `t3` on(`t3`.`idAccertamento` = `t2`.`idAccertamento`)) left join `Soggetto` `t1` on(`t1`.`idSoggetto` = `t3`.`idSoggetto`)) left join `TipoAccertamento` `t4` on(`t2`.`idTipoAccertamento` = `t4`.`idTipoAccertamento`)) left join `Accertamento` `t5` on(`t5`.`idAccertamento` = `t2`.`idAccertamentoPadre`)) ;

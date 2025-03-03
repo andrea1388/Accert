@@ -1,12 +1,11 @@
 # genera la chiave per il certificato CA
 if [ ! -f CA-key.pem ]; then
-    echo "Genero chiave CA"
+    echo "Genero chiave CA. Immettere una password per la chiave da 4 a 1023 caratteri"
     openssl genrsa -aes256 -out CA-key.pem 4096
 fi
 
 # genera il certificato della CA
 if [ ! -f CA.pem ]; then
-    clear
     echo "Dati della CA"
     openssl req -new -x509 -sha256 -days 3650 -key CA-key.pem -out CA.pem -addext 'subjectAltName = DNS:acsoft.top'
 fi
@@ -15,7 +14,6 @@ fi
 openssl genrsa -out certificati/key.key 4096
 
 #crea un csr
-clear
 echo "Dati del certificato server"
 openssl req -new -sha256 -key certificati/key.key -out internal.csr
 
