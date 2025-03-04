@@ -45,6 +45,11 @@ Nello script backup.sh mettete la password dell'utente mariabackup.
 nano backup.sh
 ```
 
+Create i certificati
+```
+./generaCertificati.sh
+```
+
 ### Scaricate e costruite le immagini
 ```
 docker compose build
