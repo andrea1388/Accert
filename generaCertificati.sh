@@ -18,4 +18,4 @@ echo "Dati del certificato server"
 openssl req -new -sha256 -key certificati/key.key -out internal.csr
 
 # cea il certificato per il web server
-openssl x509 -req -sha256 -days 3650 -in internal.csr -CA CA.pem -CAkey CA-key.pem -out certificati/cert.crt -extfile certconf.cnf
+openssl x509 -req -sha256 -days 3650 -in internal.csr -CAcreateserial -CA CA.pem -CAkey CA-key.pem -out certificati/cert.crt -extfile certconf.cnf
