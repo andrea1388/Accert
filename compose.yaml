@@ -10,6 +10,7 @@ services:
     container_name: db
     image: mariadb:10.8.2
     restart: unless-stopped
+    command: --lower_case_table_names=1
     environment:
       MARIADB_ROOT_PASSWORD: metterelapassword
 #      MARIADB_MYSQL_LOCALHOST_USER: 1
