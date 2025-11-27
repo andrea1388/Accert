@@ -12,6 +12,30 @@
         $ok=false; 
         $errore="le password non coincidono";
     }
+    elseif($oldpwd==$pwd2) {
+        $ok=false; 
+        $errore="la password coincide con quella vecchia";
+    }
+    elseif(preg_match('/[A-Z]/', $pwd1))
+    {
+        $ok=false; 
+        $errore="la password deve contenere almeno una maiuscola";
+    }
+    elseif(preg_match('/[a-z]/', $pwd1))
+    {
+        $ok=false; 
+        $errore="la password deve contenere almeno una minuscola";
+    }
+    elseif(preg_match('/[0-9]/', $pwd1))
+    {
+        $ok=false; 
+        $errore="la password deve contenere almeno un numero";
+    }
+    elseif(preg_match('/[^A-Za-z0-9]/', $pwd1))
+    {
+        $ok=false; 
+        $errore="la password deve contenere almeno un carattere speciale";
+    }
     elseif(strlen($pwd1)<8) {
         $ok=false; 
         $errore="password nuova troppo corta";

@@ -6,7 +6,7 @@
     session_name("accertV2");
     //session_set_cookie_params(3600);
     session_start();
-    setcookie(session_name(),session_id(),time()+3600);
+    setcookie(session_name(),session_id(),time()+36000);
     if(!isset($_SESSION['idutente'])) {
       header('Location: login.php');
       die();
