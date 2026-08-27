@@ -8,7 +8,7 @@ anche da dispositivi mobili. Ogni pratica può essere composta da altre
 pratiche che a loro volta possono essere composta da altre pratiche
 (albero). 
 
-Questa applicazione è anche pubblicata su [https://developers.italia.it/]{:target="_blank"} (developers.italia.it) che è il Catalogo del software a riuso e open source della Pubblica Amministrazione [https://catalogo-software.developers.italia.it/software/e40090bb-0a40-4520-ae8b-ddaf1ff1b754]{:target="_blank"} (apri link)
+Questa applicazione è anche pubblicata su [developers.italia.it] (https://developers.italia.it/) che è il Catalogo del software a riuso e open source della Pubblica Amministrazione. [Apri link alla pagina su developers.italia.it] (https://catalogo-software.developers.italia.it/software/e40090bb-0a40-4520-ae8b-ddaf1ff1b754)
 
 SPDX short identifier: EUPL-1.2
 
