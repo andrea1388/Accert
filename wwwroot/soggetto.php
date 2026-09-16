@@ -45,21 +45,16 @@
 <html lang="it">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Soggetto</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
   <body>
     <div class="container">
       <? include 'menu.php'; ?>
-      <h1>Soggetto</h1>
+      <h1 class="mt-3">Soggetto</h1>
       <div id="datigenerali">
-      <form class="form-horizontal" method="post" action="salvaSoggetto.php">
+      <form method="post" action="salvaSoggetto.php">
         <input type="hidden" name="idSoggetto" value="<?echo $sogg->idSoggetto; ?>">
         <input type="hidden" name="idAccertamento" value="<?echo $idaccertamento; ?>">
         <input type="hidden" name="ruolo" value="<?echo $ruolo; ?>">
@@ -78,11 +73,11 @@
         <? GeneraFormGroup("","password","Password",$readonly); ?>
         <?php endif; ?>
         <? GeneraFormTextArea(trim($sogg->note),"note","Note",false,$readonly); ?> 
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Salva</button>
+        <div class="form-group row">
+          <div class="offset-sm-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Salva</button>
             <? if($readonly) :?>
-            <button type="button" class="btn btn-default" onclick="window.location='soggetto.php?edit&idSoggetto=<? echo $_REQUEST["idSoggetto"];?>'">Abilita modifiche</button>    
+            <button type="button" class="btn btn-outline-secondary" onclick="window.location='soggetto.php?edit&idSoggetto=<? echo $_REQUEST["idSoggetto"];?>'">Abilita modifiche</button>    
             <?php endif; ?> 
           </div>
         </div>
@@ -90,10 +85,10 @@
       </div>
       <? if(!$nuovo) :?>
       <div id="listaaccertamenti">
-      <h1>Lista accertamenti corrispondenti</h1>
+      <h1 class="mt-4">Lista accertamenti corrispondenti</h1>
       <table class="table table-hover table-bordered">
         <thead>
-          <tr class="info">
+          <tr class="table-info">
             <td>Numero</td>
             <td>Tipo</td>
             <td>Data</td>
@@ -121,10 +116,7 @@
       <?php endif; ?> 
     </div>
 
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
 <?php $conn->close(); ?>

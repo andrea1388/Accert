@@ -13,8 +13,8 @@
     }
   }
   function GeneraFormGroup($valore,$nomecampo,$placeholder,$readonly) {
-    echo "<div class=\"form-group\">\n";
-    echo "<label for=\"" .$nomecampo . "\" class=\"col-sm-2 control-label\">" . $placeholder. "</label>\n";
+    echo "<div class=\"form-group row\">\n";
+    echo "<label for=\"" .$nomecampo . "\" class=\"col-sm-2 col-form-label\">" . $placeholder. "</label>\n";
     echo "<div class=\"col-sm-10\">\n";
     GeneraCampoInput($valore,$nomecampo,$placeholder,$readonly);
     echo "</div>\n";
@@ -33,7 +33,7 @@
 
   function GeneraFormInput($valore,$nomecampo,$etichetta,$required,$readonly,$maxlength=0,$placeholder="")
   {
-    echo "<div class='form-group'>\n";
+    echo "<div class='form-group row'>\n";
     GeneraFormLabel($nomecampo,$etichetta);
     echo "<div class='col-sm-10'>\n";
     echo "<input type='text' class='form-control' id='id_".$nomecampo."' name='".$nomecampo."' ";
@@ -49,7 +49,7 @@
 
   function GeneraFormFile($valore,$nomecampo,$etichetta,$required,$readonly)
   {
-    echo "<div class='form-group'>\n";
+    echo "<div class='form-group row'>\n";
     GeneraFormLabel($nomecampo,$etichetta);
     echo "<div class='col-sm-10'>\n";
     echo "<input type='file' class='form-control' id='id_".$nomecampo."' name='".$nomecampo."' placeholder='".$etichetta."'";
@@ -63,7 +63,7 @@
 
   function GeneraFormDate($valore,$nomecampo,$etichetta,$required,$readonly)
   {
-    echo "<div class='form-group'>\n";
+    echo "<div class='form-group row'>\n";
     GeneraFormLabel($nomecampo,$etichetta);
     echo "<div class='col-sm-10'>\n";
     echo "\t<input type='text' class='form-control' id='id_".$nomecampo."' name='".$nomecampo."' placeholder='".$etichetta."'";
@@ -77,7 +77,7 @@
 
   function GeneraFormSelect($valore,$nomecampo,$etichetta,$required,$readonly,$array)
   {
-    echo "<div class='form-group'>\n";
+    echo "<div class='form-group row'>\n";
     GeneraFormLabel($nomecampo,$etichetta);
     echo "<div class='col-sm-10'>\n";
     echo "<select class='form-control' id='id_".$nomecampo." 'name='".$nomecampo."'";
@@ -91,15 +91,15 @@
   }
   function GeneraFormSubmit($etichetta)
   {
-    echo "<div class='form-group'>\n";
-    echo "<div class='col-sm-offset-2 col-sm-10'>\n";
-    echo "<button type='submit' class='btn btn-default'>".$etichetta."</button>\n";
+    echo "<div class='form-group row'>\n";
+    echo "<div class='offset-sm-2 col-sm-10'>\n";
+    echo "<button type='submit' class='btn btn-primary'>".$etichetta."</button>\n";
     echo "</div>\n";
     echo "</div>\n";
   }
   function GeneraFormTextArea($valore,$nomecampo,$etichetta,$required,$readonly)
   {
-    echo "<div class='form-group'>\n";
+    echo "<div class='form-group row'>\n";
     GeneraFormLabel($nomecampo,$etichetta);
     echo "<div class='col-sm-10'>\n";
     echo "<textarea rows='4' cols='50' id='id_".$nomecampo."' class='form-control'  placeholder='".$etichetta."' name='".$nomecampo."'";
@@ -114,7 +114,7 @@
 
   function GeneraFormLabel($nomecampo,$etichetta)
   {
-    echo "<label for='id_".$nomecampo."' class='col-sm-2 control-label'>".$etichetta."</label>\n";
+    echo "<label for='id_".$nomecampo."' class='col-sm-2 col-form-label'>".$etichetta."</label>\n";
   }
 
 
