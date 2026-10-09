@@ -6,35 +6,31 @@
 <html lang="it">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lista soggetti</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
   <body>
     <div class="container">
     <? include 'menu.php'; ?>
-    <h1>Cambio password</h1>
+    <h1 class="mt-3">Cambio password</h1>
       <form action='docambiopassword.php'>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Vecchia password</label>
-          <input type="password" class="form-control" name="vecchiapassword" autofocus>
-          <label for="exampleInputEmail1">Nuova password</label>
-          <input type="password" class="form-control" name="nuovapassword1">
-          <label for="exampleInputEmail1">Nuova password (ripetere)</label>
-          <input type="password" class="form-control" name="nuovapassword2">
+        <div class="form-group mb-3">
+          <label for="vecchiapassword" class="form-label">Vecchia password</label>
+          <input type="password" class="form-control" name="vecchiapassword" id="vecchiapassword" autofocus>
         </div>
-        <button type="submit" class="btn btn-default">Cambia</button>
+        <div class="form-group mb-3">
+          <label for="nuovapassword1" class="form-label">Nuova password</label>
+          <input type="password" class="form-control" name="nuovapassword1" id="nuovapassword1">
+        </div>
+        <div class="form-group mb-3">
+          <label for="nuovapassword2" class="form-label">Nuova password (ripetere)</label>
+          <input type="password" class="form-control" name="nuovapassword2" id="nuovapassword2">
+        </div>
+        <button type="submit" class="btn btn-primary">Cambia</button>
       </form>
 </div>
 
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -48,21 +48,16 @@
 <html lang="it">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Accertamento</title>    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
   <body>
     <div class="container">
       <? include 'menu.php'; ?>
-      <h1>Accertamento</h1>
-      <div class="alert alert-default" >
-        <form class="form-horizontal" method="get" action="salvaAttività.php">
+      <h1 class="mt-3">Accertamento</h1>
+      <div class="alert alert-secondary">
+        <form method="get" action="salvaAttività.php">
           <input type="hidden" name="idAccertamento" value="<? echo $id; ?>">
           <input type="hidden" name="idOperatore" value="<? echo $_SESSION['idutente']; ?>">
           <input type="hidden" name="ruolo" value="1">
@@ -70,8 +65,8 @@
           <? GeneraFormSelect($acc->idTipoAccertamento,"idTipoAccertamento","Tipo Attività",True,$readonly,$arrayTipiAccertamento); ?>
           <? GeneraFormInput($acc->numero,"numero","Numero",true,true); ?>
           <? GeneraFormInput($acc->anno,"anno","Anno",true,!$nuovo); ?>
-          <div class="form-group">
-              <label for="Data" class="col-sm-2 control-label">Data/Ora</label>
+          <div class="form-group row">
+              <label for="Data" class="col-sm-2 col-form-label">Data/Ora</label>
               <div class="col-sm-5">
                 <input type="text" class="form-control" id="Data" placeholder="lasciare vuoto se è ancora da fare" name="Data" value="<? echo FormattaData($acc->data,"d/m/Y"); ?>" <? if($readonly) echo " readonly";?>>
               </div>
@@ -83,23 +78,23 @@
           <? GeneraFormInput($acc->descrizione,"descrizione","Descrizione",true,$readonly); ?>
           <? GeneraFormTextArea(trim($acc->descrizione_estesa),"descrizione_estesa","Descrizione estesa",false,$readonly); ?>
           <? //GeneraFormInput($acc->targa,"targa","Targa",false,$readonly); ?>
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-default">Salva</button>
+          <div class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+              <button type="submit" class="btn btn-primary">Salva</button>
               <? if($readonly) :?>
-              <button type="button" class="btn btn-default" onclick="window.location='accertamento.php?edit&idAccertamento=<? echo $id;?>'">Abilita modifiche</button>    
+              <button type="button" class="btn btn-outline-secondary" onclick="window.location='accertamento.php?edit&idAccertamento=<? echo $id;?>'">Abilita modifiche</button>    
               <?php endif; ?> 
               <? if(!empty($acc->idAccertamentoPadre)) :?>
-              <button type="button" class="btn btn-default" onclick="window.location='accertamento.php?idAccertamento=<? echo $acc->idAccertamentoPadre;?>'">Vai alla pratica principale</button>    
+              <button type="button" class="btn btn-outline-secondary" onclick="window.location='accertamento.php?idAccertamento=<? echo $acc->idAccertamentoPadre;?>'">Vai alla pratica principale</button>    
               <?php endif; ?> 
             </div>
           </div>
-  </form>
+</form>
 
       </div>
 
       <? if(!$nuovo) :?>
-      <h2>Soggetti</h2>
+      <h2 class="mt-4">Soggetti</h2>
       <?
         include 'table.soggetti.php';
       ?>
@@ -114,7 +109,7 @@
       ?>
       <hr>
       <h2>Aggiungi soggetto</h2>
-      <form class="form-horizontal" method="post" action="listaSoggetti.php">    
+      <form method="post" action="listaSoggetti.php">    
         <input type="hidden" name="idAccertamento" value="<? echo $id; ?>">
         <? GeneraFormInput("","dati","Cognome",true,false,5,"Inserire parte del nome o del cognome per la ricerca"); ?>
         <?php
@@ -126,7 +121,7 @@
       </form>
 
       <h2>Aggiungi attivit&agrave;</h2>
-      <form class='form-horizontal' action="salvaAttività.php" method="post">
+      <form action="salvaAttività.php" method="post">
         <input type="hidden" name="idAccertamentoPadre" value="<? echo $id; ?>">
         <input type="hidden" name="anno" value="<? echo date("Y"); ?>">
         <input type="hidden" name="idOperatore" value="<? echo $_SESSION['idutente']; ?>">
@@ -139,7 +134,7 @@
         <? GeneraFormSubmit("Aggiungi"); ?>
       </form> 
       <h2>Aggiungi documento</h2>
-      <form class="form-horizontal" action="upload.php" method="post" enctype="multipart/form-data">
+      <form action="upload.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="idAccertamento" value="<? echo $id; ?>">
         <input type="hidden" name="tipo" value="1">
         <? GeneraFormFile("","file","File",True,false); ?>
@@ -150,8 +145,6 @@
       <?php endif; ?> 
 	</div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
