@@ -19,16 +19,6 @@
         <div class="card-body">
         <h4>Introduzione</h4>
         <p>Accert permette di associare soggetti a pratiche. Per iniziare ad utilizzarlo consulta la guida a questo indirizzo <a href="https://policeapps.acsoft.top/guida" target="_blank">policeapps.acsoft.top/guida</a></p>
-
-
-        <h4>Donazioni</h4>
-        <p>Se ti pace Accert puoi fare una donazione. Serve per sostenere i costi del cloud, per aggiungere nuove funzionalità e per garantire il monitoraggio del buon funzionamento del sistema.
-        <form action="https://www.paypal.com/donate" method="post" target="_top">
-          <input type="hidden" name="hosted_button_id" value="VBBN68XBEQPFY" />
-          <input type="image" src="https://www.paypalobjects.com/it_IT/IT/i/btn/btn_donate_LG.gif" border="0" name="submit" title="Dona con PayPal" alt="Fai una donazione con il pulsante PayPal" />
-          <img alt="" border="0" src="https://www.paypal.com/it_IT/i/scr/pixel.gif" width="1" height="1" />
-        </form>
-        </p>
         <h4>Statistiche</h4>
         <p><? include 'table.riepilogo.php'; ?></p>
         </div>
