@@ -23,16 +23,6 @@ services:
     ports:
       - 3306:3306
 
-  phpmyadmin:
-    container_name: phpmyadmin
-    image: phpmyadmin
-    restart: always
-    ports:
-      - 8080:80
-    depends_on:
-      - "db"
-    # environment:
-    #   - PMA_HOST= db
 
   php:
     container_name: php

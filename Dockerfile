@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:8.5.12-apache-bookworm
 
 # RUN apt-get update && \
 #     apt-get install -y \
@@ -7,7 +7,8 @@ FROM php:8.1-apache
 # RUN apt-get install -y \
 #         libxml2-dev
 
-RUN /usr/local/bin/docker-php-ext-install mysqli 
+RUN /usr/local/bin/docker-php-ext-install mysqli
+
 # pdo pdo_mysql zip xmlwriter
 # RUN apt-get install libssl-dev -y
 
@@ -36,5 +37,5 @@ RUN /usr/local/bin/docker-php-ext-install mysqli
 
 RUN a2enmod rewrite
 RUN a2enmod ssl
-RUN usermod -u 1000 www-data
-RUN usermod -G staff www-data
+##RUN usermod -u 1000 www-data
+##RUN usermod -G staff www-data
